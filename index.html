@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lionic</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/media.css">
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container flex header__container">
+        <a href="#" class="header__logo">
+          <img src="img/logo.svg" alt="Logo">
+        </a>
+<!--
+        <nav class="nav header__nav" title="Menu">
+          <ul class="nav__list list-reset flex">
+            <li class="nav__item"><a href="#XM_homepage" class="nav__link">XM Homepage</a></li>
+            <li class="nav__item"><a href="#support" class="nav__link">Support</a></li>
+          </ul>
+        </nav>
+-->
+    </div>
+  </header>
+  <main class="main">
+    <section class="hero section-offset">
+      <div class="container">
+        <div class="hero__content flex">
+          <p class="hero__before-title">
+            Trade with
+          </p>
+          <h1 class="hero__title">
+            Zero Swaps on&nbsp;All XM&nbsp;Ultra Low Accounts for more than 25&nbsp;instruments!
+          </h1>
+          <p class="hero__text">Enjoy spreads <strong>as&nbsp;low as&nbsp;0.6 pips</strong> and leverage up&nbsp;to&nbsp;1000:1&nbsp;on instruments like EURUSD, USDJPY, EURJPY, GBPUSD, and Gold.</p>
+          <button class="hero__btn btn btn-reset">open account</button>
+          <span class="hero__demo-account">New to&nbsp;trading? Try&nbsp;a <a href="#" class="hero__demo-account__link">Demo account.</a></span>
+          <span class="hero__TC TC">Terms and Conditions apply<span class="character">*</span>. To&nbsp;read the full T&amp;Cs, <a href="#" class="hero__TC__link TC-link">click here.</a></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="coin section-offset">
+      <div class="container">
+        <ul class="coin__list list-reset flex">
+          <li class="bitcoin__item__box box">
+            <div class="box">
+              <div class="box__top flex" id="coin-tickers">
+                <img class="box__image" src="img/Group_7901.png" alt="bitcoin logo" />
+                <p class="symbol"></p>
+                <btn class="name">Bitcoin</btn>
+              </div>
+
+              <div class="box__bottom">
+                <p class="price-usd"></p>
+                <p class="percent-change-24h negative positive"></p>
+              </div>
+            </div>
+          </li>
+<script>
+          const url = 'https://api.coinlore.net/api/tickers/?id=90';
+
+function displayCoinData() {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const coinData = data.data[0];
+      const symbolElement = document.querySelector('.symbol');
+      const nameElement = document.querySelector('.name');
+      const priceElement = document.querySelector('.price-usd');
+      const percentChangeElement = document.querySelector('.percent-change-24h');
+
+      symbolElement.textContent = coinData.symbol;
+      nameElement.textContent = coinData.name;
+      priceElement.textContent = coinData.price_usd;
+      percentChangeElement.textContent = `${coinData.percent_change_24h}%`;
+    })
+    .catch((error) => console.log(error));
+    }
+
+    displayCoinData();
+</script>
+
+          <li class="Ethereum__item__box box">
+            <div class="box flex">
+              <div class="box__top flex" id="coin-2">
+                <img class="box__image" src="img/Group_7902.png" alt="Ethereum logo" />
+                <p class="symbol"></p>
+                <btn class="name">Ethereum</btn>
+              </div>
+
+              <div class="box__bottom">
+                <p class="price-usd"></p>
+                <p class="percent-change-24h positive negative"></p>
+              </div>
+            </div>
+            <script>
+              fetch('https://api.coinlore.net/api/tickers/?id=80')
+  .then(response => response.json()) // Parse the JSON response
+  .then(data => {
+    // Find the Ethereum data object in the response
+    const ethereumData = data.data.find(item => item.name === 'Ethereum');
+
+    // Select the Ethereum item box and update its content with the fetched data
+    const ethereumBox = document.querySelector('.Ethereum__item__box');
+    ethereumBox.querySelector('.symbol').textContent = ethereumData.symbol;
+    ethereumBox.querySelector('.name').textContent = ethereumData.name;
+    ethereumBox.querySelector('.price-usd').textContent = `$${ethereumData.price_usd}`;
+    ethereumBox.querySelector('.percent-change-24h').textContent = `${ethereumData.percent_change_24h}%`;
+  })
+  .catch(error => console.error(error)); // Handle any errors
+            </script>
+          </li>
+
+          <li class="ripple__item__box box">
+            <div class="box flex">
+              <div class="box__top flex" id="coin-3">
+                <img class="box__image" src="img/Group_7903.png" alt="Ripple logo" />
+                <p class="symbol"></p>
+                <btn class="name">Ripple</btn>
+              </div>
+
+              <div class="box__bottom">
+                <p class="price-usd"></p>
+                <p class="percent-change-24h positive negative"></p>
+              </div>
+            </div>
+            <script>
+              // select the Ripple list item
+const rippleListItem = document.querySelector('.ripple__item__box');
+
+const rippleSymbol = document.querySelector('.ripple__item__box .symbol');
+const rippleName = document.querySelector('.ripple__item__box .name');
+const ripplePrice = document.querySelector('.ripple__item__box .price-usd');
+const ripplePercentChange = document.querySelector('.ripple__item__box .percent-change-24h');
+
+fetch('https://api.coinlore.net/api/ticker/?id=58')
+  .then(response => response.json())
+  .then(data => {
+    rippleSymbol.textContent = data[0].symbol;
+    rippleName.textContent = data[0].name;
+    ripplePrice.textContent = `$${data[0].price_usd}`;
+    ripplePercentChange.textContent = `${data[0].percent_change_24h}%`;
+  })
+  .catch(error => console.error(error));
+
+            </script>
+               <script>
+                const percentChange = document.querySelector('.percent-change-24h');
+                const percentChangeValuet = document.querySelector('.percent-change-24h');;
+                if (percentChangeValue > 0) {
+                  percentChange.classList.add('positive');
+                } else if (percentChangeValue < 0) {
+                  percentChange.classList.add('negative');
+                }
+                </script>
+          </li>
+
+          <li class="litecoin__item__box box">
+            <div class="box flex">
+              <div class="box__top flex" id="coin-4">
+                <img class="box__image" src="img/Group_7904.png" alt="Litecoin logo" />
+                <p class="symbol"></p>
+                <btn class="name">Litecoin</btn>
+              </div>
+
+              <div class="box__bottom">
+                <p class="price-usd"></p>
+                <p class="percent-change-24h positive negative"></p>
+              </div>
+            </div>
+            <script>
+              const litecoinListItem = document.querySelector('.litecoin__item__box');
+
+const litecoinSymbol = litecoinListItem.querySelector('.symbol');
+const litecoinName = litecoinListItem.querySelector('.name');
+const litecoinPrice = litecoinListItem.querySelector('.price-usd');
+const litecoinPercentChange = litecoinListItem.querySelector('.percent-change-24h');
+
+fetch('https://api.coinlore.net/api/ticker/?id=1')
+  .then(response => response.json())
+  .then(data => {
+    litecoinSymbol.textContent = data[0].symbol;
+    litecoinName.textContent = data[0].name;
+    litecoinPrice.textContent = `$${data[0].price_usd}`;
+    litecoinPercentChange.textContent = `${data[0].percent_change_24h}%`;
+  })
+  .catch(error => console.error(error));
+            </script>
+          </li>
+
+          <li class="Bitcoin-cash__item__box box">
+            <div class="box flex">
+              <div class="box__top flex" id="coin-5">
+                <img class="box__image" src="img/Group_7905.png" alt="bitcoin cash logo" />
+                <p class="symbol"></p>
+                <btn class="name">Bitcoin cash</btn>
+              </div>
+
+              <div class="box__bottom">
+                <p class="price-usd"></p>
+                <p class="percent-change-24h positive negative"></p>
+              </div>
+            </div>
+          </li>
+          <script>
+            // select the Bitcoin Cash list item
+const bchListItem = document.querySelector('.Bitcoin-cash__item__box');
+
+const bchSymbol = bchListItem.querySelector('.symbol');
+const bchName = bchListItem.querySelector('.name');
+const bchPrice = bchListItem.querySelector('.price-usd');
+const bchPercentChange = bchListItem.querySelector('.percent-change-24h');
+
+fetch('https://api.coinlore.net/api/ticker/?id=2321')
+  .then(response => response.json())
+  .then(data => {
+    bchSymbol.textContent = data[0].symbol;
+    bchName.textContent = data[0].name;
+    bchPrice.textContent = `$${data[0].price_usd}`;
+    bchPercentChange.textContent = `${data[0].percent_change_24h}%`;
+  })
+  .catch(error => console.error(error));
+
+          </script>
+        </ul>
+        <script>
+          fetch('https://example.com/api/percent-change')
+  .then(response => response.json())
+  .then(data => {
+    const percentChangeValue = data.percentChange;
+
+  });
+        </script>
+
+      </div>
+    </section>
+
+    <section class="advantages section-offset">
+      <div class="container">
+        <h2>Why Trade with&nbsp;XM?</h2>
+
+        <p class="advantages__descr">We&nbsp;have been providing traders around the world with the same premium experience for over a&nbsp;decade. As&nbsp;an&nbsp;industry-leader, we&nbsp;know what the modern trader needs to&nbsp;be&nbsp;successful in&nbsp;the markets.</p>
+
+        <ul class="advantages__list list-reset flex">
+            <li class="advantages__item advantages__item__1">
+              <h3 class="advantages__title title-3">Superior Trade Execution</h3>
+              <img class="advantages__image image-1" src="img/fast-execusion-icon.png" alt="a flash icon">
+              <p class="advantages__text">99% of&nbsp;trades are executed in&nbsp;less than a&nbsp;second, with no&nbsp;requotes or&nbsp;rejections.</p>
+           </li>
+
+          <li class="advantages__item advantages__item__2">
+            <h3 class="advantages__title">Competitive Pricing</h3>
+            <img class="advantages__image image-2" src="img/competitive-pricing-icon.png" alt="a percentage icon">
+            <p class="advantages__text">We&nbsp;offer some of&nbsp;the lowest spreads and we&nbsp;don&rsquo;t charge commissions.</p>
+          </li>
+
+          <li class="advantages__item advantages__item__3">
+            <h3 class="advantages__title">Advanced Technology</h3>
+            <img class="advantages__image image-3" src="img/tech-icon.png" alt="a pcb board icon">
+            <p class="advantages__text">Trade on&nbsp;MT4&nbsp;or MT5, with expert tools, across desktop, web and mobile.</p>
+          </li>
+
+          <li class="advantages__item advantages__item__4">
+            <h3 class="advantages__title">Start with&nbsp;$5</h3>
+            <img class="advantages__image image-4" src="img/dollar-icon.png" alt="a dollar icon">
+            <p class="advantages__text">Start trading your preferred instruments with as&nbsp;little as&nbsp;a&nbsp;$5&nbsp;minimum deposit.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="registration section-offset">
+      <div class="container registration__container">
+        <h2 class="registration__title">&mdash;&nbsp;Register Here&nbsp;&mdash;</h2>
+
+        <p class="registration__text">Join&nbsp;us to&nbsp;celebrate our biggest night of&nbsp;the year.</p>
+
+        <ul class="registration__list list-reset flex">
+          <li class="registration__item registration__date-module">
+            <time class="registration__date" datetime="2022-11-05 19:30">05&nbsp;november 2022</time>
+          </li>
+
+          <li class="registration__item registration__time-module">
+            <p class="registration__time">16:00&nbsp;&mdash; 23:00</p>
+          </li>
+
+          <li class="registration__item registration__address-module">
+            <address class="registration__location">Centara Grand &amp;&nbsp;Bangkok Convention Centre, Bangkok</address>
+          </li>
+        </ul>
+      </div>
+
+      <div class="registration__form">
+        <!--form to build-->
+
+        <button class="registration__btn btn btn-reset">REGISTER NOW</button>
+        <p class="registration__create-account">Don&rsquo;t have an&nbsp;account? <a href="#" class="registration__create-account__link">Create one here</a> and register for the event</p>
+        <p class="registration__TC">Terms and Conditions apply*. To&nbsp;read the full T&amp;Cs, click <a href="#" class="registration__TC__link TC-link">here.</a></p>
+
+
+      </div>
+    </section>
+
+    <section class="event-gallery section-offset">
+      <div class="container">
+        <!--gallery to build-->
+
+      </div>
+
+    </section>
+
+    <section class="why-us section-offset">
+      <div class="container">
+        <h2 class="why-us__title">
+          Big<span class="why-us__character character">.</span> Fair<span class="why-us__character character">.</span> Human<span class="why-us__character character">.</span>
+        </h2>
+
+        <p class="why-us__text">Learn why over 5&nbsp;million clients choose XM&nbsp;as their trusted online broker.</p>
+        <ul class="why-us__list list-reset flex">
+          <li class="why-us__item why-us__item__1">
+            <img class="smaller-icons why-us__icon" src="img/shield.png" alt="shield icon">
+            <h3 class="why-us__item-title">Authorised and Regulated</h3>
+            <p class="why-us__item-descr">At&nbsp;XM, we&nbsp;adhere to&nbsp;all regulatory standards and are fully authorised and regulated by&nbsp;FSC.</p>
+          </li>
+
+          <li class="why-us__item why-us__item__2">
+            <img class="smaller-icons why-us__icon" src="img/people.png" alt="people icon">
+            <h3 class="why-us__item-title">Committed and Fair</h3>
+            <p class="why-us__item-descr">We&nbsp;operate with complete transparency and adhere to&nbsp;the highest professional and ethical standards.</p>
+          </li>
+
+          <li class="why-us__item why-us__item__3">
+            <img class="bigger-icons why-us__icon" src="img/trophy.png" alt="trophy icon">
+            <h3 class="why-us__item-title">Multi-Award-Winning</h3>
+            <p class="why-us__item-descr">Over the years we&nbsp;have received over 40&nbsp;awards for the quality of&nbsp;our products and services.</p>
+          </li>
+
+          <li class="why-us__item why-us__item__1">
+            <img class="bigger-icons why-us__icon" src="img/support.png" alt="24/7 support icon">
+            <h3 class="why-us__item-title">24/7 Support</h3>
+            <p class="why-us__item-descr">Our support agents are on&nbsp;hand 24/7 to&nbsp;answer your questions or&nbsp;assist you with any issues.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container flex">
+      <div class="footer__top flex">
+        <ul class="policy-links list-reset flex">
+          <li class="policy-links__item policy-links__item-1">
+            <a href="#" class="policy-links__privacy">Privacy Policy</a>
+          </li>
+
+          <li class="policy-links__item policy-links__item-2">
+            <a href="#" class="policy-links__cookie">Cookie Policy</a>
+          </li>
+
+          <li class="policy-links__item policy-links__item-3">
+            <a href="#" class="policy-links__privacy">Privacy Policy</a>
+          </li>
+        </ul>
+        </div>
+        <div class="footer__bottom flex">
+          <img class="trading-img" src="img/TradingPoint.png" alt="Trading Point logo">
+        </div>
+      </div>
+  </footer>
+</body>
+
+</html>
